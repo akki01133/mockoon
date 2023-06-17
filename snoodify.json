@@ -1,0 +1,244 @@
+{
+  "uuid": "8d55b8f2-cc8a-4c42-bdab-c5af3ca3b305",
+  "lastMigration": 27,
+  "name": "Snoodify",
+  "endpointPrefix": "v1",
+  "latency": 0,
+  "port": 8080,
+  "hostname": "127.0.0.1",
+  "folders": [
+    {
+      "uuid": "376ba27d-e8a7-4cd0-9379-9e889bfbb624",
+      "name": "Auth",
+      "collapsed": false,
+      "children": [
+        {
+          "type": "route",
+          "uuid": "68f154af-ca72-4c1c-846c-dbbbb03abd55"
+        },
+        {
+          "type": "route",
+          "uuid": "fb5a851c-b497-497c-8c0b-9232da92d136"
+        },
+        {
+          "type": "route",
+          "uuid": "4ff2e301-9d17-42e1-ae75-74d96b5bcc35"
+        },
+        {
+          "type": "route",
+          "uuid": "e4114a9f-6a68-4690-a746-a1149a823f99"
+        }
+      ]
+    }
+  ],
+  "routes": [
+    {
+      "uuid": "44ed78e4-2d7b-4d66-99da-7db54ddae4fe",
+      "type": "http",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "",
+      "responses": [
+        {
+          "uuid": "47b39f78-01d7-4170-93ba-b09e4ab13a77",
+          "body": "server is running",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true
+        }
+      ],
+      "enabled": true,
+      "responseMode": null
+    },
+    {
+      "uuid": "68f154af-ca72-4c1c-846c-dbbbb03abd55",
+      "type": "http",
+      "documentation": "",
+      "method": "post",
+      "endpoint": "auth/getOtp",
+      "responses": [
+        {
+          "uuid": "9efeca82-a793-4bfa-bff5-53f789e5be0f",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 201,
+          "label": "",
+          "headers": [
+            {
+              "key": "Authorization",
+              "value": "Bearer otpSent"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "otp",
+              "value": "987987",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true
+        }
+      ],
+      "enabled": true,
+      "responseMode": null
+    },
+    {
+      "uuid": "fb5a851c-b497-497c-8c0b-9232da92d136",
+      "type": "http",
+      "documentation": "",
+      "method": "post",
+      "endpoint": "auth/confirmOtp",
+      "responses": [
+        {
+          "uuid": "143a9b7d-3adf-4dd7-9f30-0ec0680bcc77",
+          "body": "{\n  \"name\":\"ajeet kr\",\n  \"phoneNumber\":\"9712095870\",\n  \"email\":\"ajeet@gmail.com\",\n  \"id\":\"KDXPK0545J\"\n}",
+          "latency": 0,
+          "statusCode": 201,
+          "label": "",
+          "headers": [
+            {
+              "key": "Authorization",
+              "value": "Bearer  loggedIn"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "header",
+              "modifier": "Authorization",
+              "value": "Bearer otpSent",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true
+        }
+      ],
+      "enabled": true,
+      "responseMode": null
+    },
+    {
+      "uuid": "e4114a9f-6a68-4690-a746-a1149a823f99",
+      "type": "http",
+      "documentation": "",
+      "method": "delete",
+      "endpoint": "auth/logout",
+      "responses": [
+        {
+          "uuid": "c3d275a2-4172-4dc7-8ac2-ec76a3c43ebe",
+          "body": "",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true
+        }
+      ],
+      "enabled": true,
+      "responseMode": null
+    },
+    {
+      "uuid": "4ff2e301-9d17-42e1-ae75-74d96b5bcc35",
+      "type": "http",
+      "documentation": "",
+      "method": "post",
+      "endpoint": "auth/signup",
+      "responses": [
+        {
+          "uuid": "239d7cf3-c7ed-417f-925a-88802ac5ea58",
+          "body": "{\n  \"name\":\"ajeet kr\",\n  \"phoneNumber\":\"9712095870\",\n  \"email\":\"ajeet@gmail.com\",\n  \"id\":\"KDXPK0545J\"\n}",
+          "latency": 0,
+          "statusCode": 201,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true
+        }
+      ],
+      "enabled": true,
+      "responseMode": null
+    }
+  ],
+  "rootChildren": [
+    {
+      "type": "route",
+      "uuid": "44ed78e4-2d7b-4d66-99da-7db54ddae4fe"
+    },
+    {
+      "type": "folder",
+      "uuid": "376ba27d-e8a7-4cd0-9379-9e889bfbb624"
+    }
+  ],
+  "proxyMode": false,
+  "proxyHost": "",
+  "proxyRemovePrefix": false,
+  "tlsOptions": {
+    "enabled": false,
+    "type": "CERT",
+    "pfxPath": "",
+    "certPath": "",
+    "keyPath": "",
+    "caPath": "",
+    "passphrase": ""
+  },
+  "cors": true,
+  "headers": [
+    {
+      "key": "Content-Type",
+      "value": "application/json"
+    }
+  ],
+  "proxyReqHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "proxyResHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "data": []
+}
